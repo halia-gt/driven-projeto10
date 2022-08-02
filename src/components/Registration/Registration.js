@@ -3,16 +3,18 @@ import {ReactComponent as Logo} from "../../assets/img/logo.svg";
 import Button from "../common/Button";
 import P from "../common/P";
 
-export default function Login() {
+export default function Registration() {
     return (
         <Wrapper>
             <Logo />
             <form>
                 <input placeholder="email"></input>
                 <input placeholder="senha"></input>
-                <Button>Entrar</Button>
+                <input placeholder="nome"></input>
+                <input placeholder="foto"></input>
+                <Button>Cadastrar</Button>
             </form>
-            <P>Não tem uma conta? Cadastre-se!</P>
+            <P>Já tem uma conta? Faça login!</P>
         </Wrapper>
     );
 }
