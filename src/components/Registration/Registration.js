@@ -14,7 +14,7 @@ export default function Registration() {
                 <input placeholder="foto"></input>
                 <Button>Cadastrar</Button>
             </form>
-            <P>Já tem uma conta? Faça login!</P>
+            <P fontSize="14px" textDecoration="underline">Já tem uma conta? Faça login!</P>
         </Wrapper>
     );
 }

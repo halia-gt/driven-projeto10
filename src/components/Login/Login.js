@@ -12,7 +12,7 @@ export default function Login() {
                 <input placeholder="senha"></input>
                 <Button>Entrar</Button>
             </form>
-            <P>Não tem uma conta? Cadastre-se!</P>
+            <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
         </Wrapper>
     );
 }

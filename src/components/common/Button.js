@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Button({children, size = '45px', type = 'button'}) {
+export default function Button({children, height = '45px', width = '100%', fontSize = '20px', type = 'button'}) {
     return (
-        <Wrapper size={size}>{children}</Wrapper>
+        <Wrapper height={height} width={width} fontSize={fontSize}>{children}</Wrapper>
     );
 }
 
@@ -12,6 +12,7 @@ const Wrapper = styled.button`
     border-radius: 5px;
     border: none;
     text-align: center;
-    height: ${props => props.size};
-    font-size: 20px;
+    width: ${props => props.width};
+    height: ${props => props.height};
+    font-size: ${props => props.fontSize};
 `;

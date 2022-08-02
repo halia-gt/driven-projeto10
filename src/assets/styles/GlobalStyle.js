@@ -57,6 +57,7 @@ const GlobalStyle = createGlobalStyle`
         height: 45px;
         padding: 0 11px;
         font-family: 'Lexend Deca', sans-serif;
+        font-size: 20px;
         color: #666666;
     }
 
