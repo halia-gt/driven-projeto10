@@ -19,10 +19,10 @@ export default function Habit() {
                 <H4 selected={false}>S</H4>
             </section>
         </HabitWrapper>
-    )
+    );
 }
 
-const HabitWrapper = styled.section`
+const HabitWrapper = styled.li`
     background: #FFFFFF;
     border-radius: 5px;
     position: relative;

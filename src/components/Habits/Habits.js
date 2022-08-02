@@ -20,8 +20,11 @@ export default function Habits() {
                 </div>
                 <HabitForm />
                 <span>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</span>
-                <Habit />
-                <Habit />
+                <ul>
+                    <Habit />
+                    <Habit />
+                </ul>
+
             </Wrapper>
             <Footer />
         </>
@@ -37,7 +40,6 @@ const Wrapper = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 20px 0;
         width: 100%;
         padding: 20px 0;
     }

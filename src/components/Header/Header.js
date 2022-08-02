@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import teste from "../../assets/img/imagem-teste.jpeg";
 
-export default function Headers() {
+export default function Header() {
     return (
         <Wrapper>
             <h1>TrackIt</h1>
