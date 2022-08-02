@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import HabitForm from "./HabitForm";
 import Button from "../common/Button";
+import Habit from "./Habit";
 
 export default function Habits() {
     return (
@@ -19,6 +20,8 @@ export default function Habits() {
                 </div>
                 <HabitForm />
                 <span>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</span>
+                <Habit />
+                <Habit />
             </Wrapper>
             <Footer />
         </>

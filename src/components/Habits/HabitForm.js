@@ -6,26 +6,26 @@ export default function HabitForm() {
     const selected = true;
     return (
         <>
-            <Wrapper>
+            <FormWrapper>
                 <input placeholder="nome do hábito"></input>
                 <section>
-                    <H3 selected={false}>D</H3>
-                    <H3 selected={selected}>S</H3>
-                    <H3 selected={selected}>T</H3>
-                    <H3 selected={false}>Q</H3>
-                    <H3 selected={false}>Q</H3>
-                    <H3 selected={false}>S</H3>
-                    <H3 selected={false}>S</H3>
+                    <H4 selected={false}>D</H4>
+                    <H4 selected={selected}>S</H4>
+                    <H4 selected={selected}>T</H4>
+                    <H4 selected={false}>Q</H4>
+                    <H4 selected={false}>Q</H4>
+                    <H4 selected={false}>S</H4>
+                    <H4 selected={false}>S</H4>
                 </section>
                 <P>Cancelar</P>
                 <button className="button">Salvar</button>
-            </Wrapper>
+            </FormWrapper>
         </>
 
     );
 }
 
-const Wrapper = styled.form`
+const FormWrapper = styled.form`
     padding: 18px;
     height: 180px;
     background-color: #FFFFFF;
@@ -55,15 +55,15 @@ const Wrapper = styled.form`
     }
 `;
 
-const H3 = styled.h3`
-        width: 30px;
-        height: 30px;
-        background-color: ${props => props.selected ? '#CFCFCF' : '#FFFFFF'};
-        color: ${props => props.selected ? '#FFFFFF' : '#CFCFCF'};
-        border: 1px solid #CFCFCF;
-        border-radius: 5px;
-        margin-right: 4px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+const H4 = styled.h4`
+    width: 30px;
+    height: 30px;
+    background-color: ${props => props.selected ? '#CFCFCF' : '#FFFFFF'};
+    color: ${props => props.selected ? '#FFFFFF' : '#CFCFCF'};
+    border: 1px solid #CFCFCF;
+    border-radius: 5px;
+    margin-right: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
