@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Button from "../common/Button";
 import P from "../common/P";
 
 export default function HabitForm() {
@@ -18,7 +19,9 @@ export default function HabitForm() {
                     <H4 selected={false}>S</H4>
                 </section>
                 <P>Cancelar</P>
-                <button className="button">Salvar</button>
+                <Button height="35px" width="84px" fontSize="16px">
+                    Salvar
+                </Button>
             </FormWrapper>
         </>
 
@@ -41,10 +44,7 @@ const FormWrapper = styled.form`
         margin-top: 8px;
     }
 
-    .button {
-        height: 35px;
-        width: 84px;
-        font-size: 16px;
+    button {
         position: absolute;
         bottom: 15px;
         right: 16px;

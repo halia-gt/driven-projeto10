@@ -49,16 +49,6 @@ const Wrapper = styled.div`
         font-size: 23px;
     }
 
-    button {
-        width: 40px;
-        height: 35px;
-        background-color: #52B6FF;
-        border-radius: 5px;
-        font-size: 27px;
-        color: #FFFFFF;
-        border: none;
-    }
-
     span {
         width: 100%;
         font-size: 18px;
