@@ -4,6 +4,7 @@ import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import Habits from "./Habits/Habits";
 import Today from "./Today/Today";
+import History from "./History/History";
 
 export default function App() {
     return (
@@ -14,6 +15,7 @@ export default function App() {
                 <Route path="/cadastro" element={<Registration />} />
                 <Route path="/habitos" element={<Habits />} />
                 <Route path="/hoje" element={<Today />} />
+                <Route path="/historico" element={<History />} />
             </Routes>
         </BrowserRouter>
     );
