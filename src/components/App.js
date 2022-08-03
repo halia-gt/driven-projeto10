@@ -1,22 +1,44 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../assets/styles/GlobalStyle";
 import Login from "./Login/Login";
-import Registration from "./Registration/Registration";
+import SignUp from "./SignUp/SignUp";
 import Habits from "./Habits/Habits";
 import Today from "./Today/Today";
 import History from "./History/History";
+import UserContext from "../context/UserContext";
+import PrivatePage from "./PrivatePage/PrivatePage";
 
 export default function App() {
+    const [token, setToken] = useState('');
+
     return (
         <BrowserRouter>
             <GlobalStyle />
-            <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/cadastro" element={<Registration />} />
-                <Route path="/habitos" element={<Habits />} />
-                <Route path="/hoje" element={<Today />} />
-                <Route path="/historico" element={<History />} />
-            </Routes>
+            <UserContext.Provider value={{ token, setToken }}>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/cadastro" element={<SignUp />} />
+                    <Route path="/habitos" element={
+                            <PrivatePage>
+                                <Habits />
+                            </PrivatePage>
+                        }
+                    />
+                    <Route path="/hoje" element={
+                            <PrivatePage>
+                                <Today />
+                            </PrivatePage>
+                        }
+                    />
+                    <Route path="/historico" element={
+                            <PrivatePage>
+                                <History />
+                            </PrivatePage>
+                        }
+                    />
+                </Routes>
+            </UserContext.Provider>
         </BrowserRouter>
     );
 }

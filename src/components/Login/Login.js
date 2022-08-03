@@ -1,43 +1,21 @@
-import styled from "styled-components";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
+import { LoginWrapper } from "../../assets/styles/LoginWrapper";
 import {ReactComponent as Logo} from "../../assets/img/logo.svg";
-import Button from "../common/Button";
-import P from "../common/P";
+import Button from "../../assets/styles/Button";
+import P from "../../assets/styles/P";
 
 export default function Login() {
+    const { token, setToken } = useContext(UserContext);
     return (
-        <Wrapper>
+        <LoginWrapper>
             <Logo />
             <form>
                 <input placeholder="email"></input>
                 <input placeholder="senha"></input>
-                <Button>Entrar</Button>
+                <Button type="submit">Entrar</Button>
             </form>
             <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
-        </Wrapper>
+        </LoginWrapper>
     );
 }
-
-const Wrapper = styled.div`
-    width: 100vw;
-    height: 100vh;
-    background-color: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    svg {
-        margin-top: 75px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 80vw;
-        margin: 25px 0;
-    }
-
-    input {
-        margin-bottom: 6px;
-        font-size: 20px;
-    }
-`;

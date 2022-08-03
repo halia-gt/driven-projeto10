@@ -1,31 +1,23 @@
 import styled from "styled-components";
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
 import TodayHabit from "./TodayHabit";
 
 export default function Today() {
     return (
-        <>
-            <Header />
-            <Wrapper>
-                <div>
-                    <h2>
-                        Segunda, 17/05
-                    </h2>
-                    <H4 started={true}>
-                        (67% dos hábitos concluídos)(Nenhum hábito concluído ainda)
-                    </H4>
-                </div>
-                <ul>
-                    <TodayHabit />
-                    <TodayHabit />
-                    <TodayHabit />
-                </ul>
-
-            </Wrapper>
-            <Footer />
-        </>
-
+        <Wrapper>
+            <div>
+                <h2>
+                    Segunda, 17/05
+                </h2>
+                <H4 started={true}>
+                    (67% dos hábitos concluídos)(Nenhum hábito concluído ainda)
+                </H4>
+            </div>
+            <ul>
+                <TodayHabit />
+                <TodayHabit />
+                <TodayHabit />
+            </ul>
+        </Wrapper>
     );
 }
 
