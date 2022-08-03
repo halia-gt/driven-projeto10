@@ -33,8 +33,9 @@ export default function Login() {
             })
             .then((answer) => {
                 const token = answer.data.token;
-                const tokenJSON = JSON.stringify({ token: token});
-                localStorage.setItem('trackit', tokenJSON);
+                const image = answer.data.image;
+                const authJSON = JSON.stringify({ token: token, image: image });
+                localStorage.setItem('trackit', authJSON);
 
                 navigate('/hoje');
             });

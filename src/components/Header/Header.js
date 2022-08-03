@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import teste from "../../assets/img/imagem-teste.jpeg";
 
-export default function Header() {
+export default function Header({ image }) {
+
     return (
         <Wrapper>
             <h1>TrackIt</h1>
-            <img src={teste} alt="Foto de perfil" />
+            <img src={image} alt="Foto de perfil" />
         </Wrapper>
     );
 }
