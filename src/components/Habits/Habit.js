@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { ImBin } from "react-icons/im";
-import HabitWeek from "./HabitWeek";
+import HabitDay from "./HabitDay";
 
 export default function Habit() {
     return (
@@ -10,7 +10,7 @@ export default function Habit() {
             <IconContext.Provider value={{ color: "#666666", className: "icon" }}>
                 <ImBin />
             </IconContext.Provider>
-            <HabitWeek />
+            {/* <HabitDay /> */}
         </Wrapper>
     );
 }

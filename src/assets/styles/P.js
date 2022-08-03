@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function P({children, fontSize = '18px', textDecoration = "none"}) {
+export default function P({children, fontSize = '18px', textDecoration = "none", setNewHabit = function() {}}) {
     return (
-        <Wrapper fontSize={fontSize} textDecoration={textDecoration}>{children}</Wrapper>
+        <Wrapper fontSize={fontSize} textDecoration={textDecoration} onClick={() => setNewHabit(false)}>{children}</Wrapper>
     );
 }
 

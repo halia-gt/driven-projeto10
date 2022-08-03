@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { Main, Title, Span } from "../../assets/styles/Body";
 import HabitForm from "./HabitForm";
@@ -5,23 +6,24 @@ import Button from "../../assets/styles/Button";
 import Habit from "./Habit";
 
 export default function Habits() {
+    const [newHabit, setNewHabit] = useState(false);
+
     return (
         <Main>
             <TitleWrapper>
                 <Title>
                     Meus hábitos
                 </Title>
-                <Button height="35px" width="40px" fontSize="27px">
+                <Button height="35px" width="40px" fontSize="27px" onClick={ () => setNewHabit(true) }>
                     +
                 </Button>
             </TitleWrapper>
-            <HabitForm />
+            {newHabit ? <HabitForm setNewHabit={setNewHabit} /> : <></>}
             <Span>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</Span>
             <ul>
                 <Habit />
                 <Habit />
             </ul>
-
         </Main>
 
     );

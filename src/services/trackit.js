@@ -3,15 +3,14 @@ import axios from 'axios';
 const BASE_URL = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit';
 
 function createHeaders() {
-    // const auth = localStorage.getItem("trackit");
-    // const config = {
-    //     headers: {
-    //     Authorization: `Bearer ${auth.token}`
-    //     }
-    // };
+    const auth = JSON.parse(localStorage.getItem("trackit"));
+    const config = {
+        headers: {
+        Authorization: `Bearer ${auth.token}`
+        }
+    };
 
-    // return config;
-    console.log('Função createHeaders()');
+    return config;
 }
 
 function postSignUp(body) {

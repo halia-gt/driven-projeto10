@@ -18,5 +18,8 @@ export default function Input({ type, placeholder, name, value, updateData, disa
 const InputWrapper = styled.input`
     margin-bottom: 6px;
     font-size: 20px;
-    background-color: ${props => props.disabled ? '#F2F2F2' : '#FFFFFF'};
+    
+    &:disabled {
+        background-color: #F2F2F2;
+    }
 `;

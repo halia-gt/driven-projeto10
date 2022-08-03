@@ -8,14 +8,18 @@ import Today from "./Today/Today";
 import History from "./History/History";
 import UserContext from "../context/UserContext";
 import PrivatePage from "./PrivatePage/PrivatePage";
+import { weekData } from "./common/weekData";
 
 export default function App() {
-    const [user, setUser] = useState('');
+    const [week, setWeek] = useState(weekData);
+    const [habitName, setHabitName] = useState({
+        name: ''
+    })
 
     return (
         <BrowserRouter>
             <GlobalStyle />
-            <UserContext.Provider value={{ user, setUser }}>
+            <UserContext.Provider value={{ week, setWeek, habitName, setHabitName }}>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/cadastro" element={<SignUp />} />
