@@ -1,21 +1,70 @@
-import { useContext } from "react";
-import UserContext from "../../context/UserContext";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginWrapper } from "../../assets/styles/LoginWrapper";
 import {ReactComponent as Logo} from "../../assets/img/logo.svg";
+import Input from "../../assets/styles/Input";
 import Button from "../../assets/styles/Button";
 import P from "../../assets/styles/P";
+import { postLogin } from "../../services/trackit";
 
 export default function Login() {
-    const { token, setToken } = useContext(UserContext);
+    const [disabled, setDisabled] = useState(false);
+    const [data, setData] = useState({
+        email: '',
+        password: ''
+    });
+    const navigate = useNavigate();
+
+    function updateData(e) {
+        setData({
+            ...data,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        setDisabled(true);
+
+        postLogin(data)
+            .catch((error) => {
+                alert(error.message);
+                setDisabled(false);
+            })
+            .then((answer) => {
+                const token = answer.data.token;
+                const tokenJSON = JSON.stringify({ token: token});
+                localStorage.setItem('trackit', tokenJSON);
+
+                navigate('/hoje');
+            });
+    }
+
     return (
         <LoginWrapper>
             <Logo />
-            <form>
-                <input placeholder="email"></input>
-                <input placeholder="senha"></input>
-                <Button type="submit">Entrar</Button>
+            <form onSubmit={handleSubmit}>
+                <Input
+                    type="email"
+                    placeholder="email"
+                    name="email"
+                    value={data.email}
+                    updateData={updateData}
+                    disabled={disabled}
+                />
+                <Input
+                    type="password"
+                    placeholder="senha"
+                    name="password"
+                    value={data.password}
+                    updateData={updateData}
+                    disabled={disabled}
+                />
+                <Button type="submit" disabled={disabled}>Entrar</Button>
             </form>
-            <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
+            <Link to="/cadastro">
+                <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
+            </Link>
         </LoginWrapper>
     );
 }

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "../assets/styles/GlobalStyle";
 import Login from "./Login/Login";
@@ -6,16 +5,12 @@ import SignUp from "./SignUp/SignUp";
 import Habits from "./Habits/Habits";
 import Today from "./Today/Today";
 import History from "./History/History";
-import UserContext from "../context/UserContext";
 import PrivatePage from "./PrivatePage/PrivatePage";
 
 export default function App() {
-    const [token, setToken] = useState('');
-
     return (
         <BrowserRouter>
             <GlobalStyle />
-            <UserContext.Provider value={{ token, setToken }}>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/cadastro" element={<SignUp />} />
@@ -38,7 +33,6 @@ export default function App() {
                         }
                     />
                 </Routes>
-            </UserContext.Provider>
         </BrowserRouter>
     );
 }

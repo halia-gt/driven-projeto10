@@ -18,9 +18,4 @@ export const LoginWrapper = styled.div`
         width: 80vw;
         margin: 25px 0;
     }
-
-    input {
-        margin-bottom: 6px;
-        font-size: 20px;
-    }
 `;
