@@ -6,6 +6,7 @@ import TodayHabit from "./TodayHabit";
 import { getHabitsToday } from "../../services/trackit";
 import Loading from "../common/Loading";
 import UserContext from "../../context/UserContext";
+import { postHabitsCheck, postHabitsUncheck } from "../../services/trackit";
 
 export default function Today() {
     const [habits, setHabits] = useState(null);
@@ -37,6 +38,27 @@ export default function Today() {
         }
     }
 
+    function checkHabit(habitId) {
+        const habit = habits.filter(habit => habitId === habit.id)[0];
+        if (!habit.done) {
+            postHabitsCheck(habitId)
+                .catch((error) => {
+                    console.log(error);
+                })
+                .then(() => {
+                    setRenderHabits(!renderHabits);
+                });
+        } else {
+            postHabitsUncheck(habitId)
+                .catch((error) => {
+                    console.log(error);
+                })
+                .then(() => {
+                    setRenderHabits(!renderHabits);
+                });
+        }
+    }
+
     return (
         <Wrapper>
             <div>
@@ -51,7 +73,7 @@ export default function Today() {
             {habits ? (
                 <ul>
                     {habits.map(habit => (
-                        <TodayHabit key={habit.id} {...habit} renderHabits={renderHabits} setRenderHabits={setRenderHabits} />
+                        <TodayHabit key={habit.id} habit={habit} checkHabit={checkHabit} />
                     ))}
                 </ul>
             ) : (

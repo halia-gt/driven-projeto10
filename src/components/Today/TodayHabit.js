@@ -1,45 +1,24 @@
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { BsCheckSquareFill } from "react-icons/bs";
-import { postHabitsCheck, postHabitsUncheck } from "../../services/trackit";
 
-export default function TodayHabit({ id, name, done, currentSequence, highestSequence, renderHabits, setRenderHabits }) {
-    function checkHabit() {
-        if (!done) {
-            console.log('Oi', id);
-            postHabitsCheck(id)
-                .catch((error) => {
-                    console.log(error);
-                })
-                .then((answer) => {
-                    setRenderHabits(!renderHabits);
-                });
-        } else {
-            postHabitsUncheck(id)
-                .catch((error) => {
-                    console.log(error);
-                })
-                .then((answer) => {
-                    setRenderHabits(!renderHabits);
-                });
-        }
-    }
+export default function TodayHabit({ habit, checkHabit }) {
 
     return (
         <LiWrapper>
             <section>
                 <h3>
-                    {name}
+                    {habit.name}
                 </h3>
                 <p>
-                    Sequência atual: <Span done={done}>{currentSequence} dias</Span>
+                    Sequência atual: <Span done={habit.done}>{habit.currentSequence} dias</Span>
                 </p>
                 <p>
-                    Seu recorde: <Span>{highestSequence} dias</Span>
+                    Seu recorde: <Span>{habit.highestSequence} dias</Span>
                 </p>
             </section>
-            <IconContext.Provider value={{ color: (done ? "#8FC549" : "#EBEBEB"), size: "69px" }}>
-                <BsCheckSquareFill onClick={checkHabit} />
+            <IconContext.Provider value={{ color: (habit.done ? "#8FC549" : "#EBEBEB"), size: "69px" }}>
+                <BsCheckSquareFill onClick={() => checkHabit(habit.id)} />
             </IconContext.Provider>
         </LiWrapper>
     );

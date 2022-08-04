@@ -1,10 +1,12 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 export default function Footer() {
-    const percentage = 66;
+    const { percentage } = useContext(UserContext);
     return (
         <Wrapper>
             <Link to="/habitos">
