@@ -17,7 +17,6 @@ export default function Habits() {
                 console.log(error);
             })
             .then((answer) => {
-                console.log(answer.data);
                 setHabits(answer.data);
             })
     }, [])
