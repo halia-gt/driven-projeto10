@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function HabitDay({ day, disabled, selectWeekday = function () {}}) {
+export default function HabitDay({ day, disabled, selectWeekday }) {
 
     return(
         <H4 selected={day.selected} onClick={disabled ? function() {} : () => selectWeekday(day.id)}>
@@ -9,7 +9,7 @@ export default function HabitDay({ day, disabled, selectWeekday = function () {}
     );
 }
 
-const H4 = styled.h4`
+export const H4 = styled.h4`
     width: 30px;
     height: 30px;
     background-color: ${props => props.selected ? '#CFCFCF' : '#FFFFFF'};

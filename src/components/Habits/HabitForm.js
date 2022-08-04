@@ -41,6 +41,12 @@ export default function HabitForm({ setNewHabit, renderHabits, setRenderHabits }
         const days = week
             .filter(day => day.selected)
             .map(day => day.id);
+
+        if (days.length === 0) {
+            alert("Selecione os dias para realizar seu hábito");
+            setDisabled(false);
+            return;
+        }
         
         const body = {
             name: habitName.name,

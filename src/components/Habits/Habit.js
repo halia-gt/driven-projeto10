@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { ImBin } from "react-icons/im";
 import HabitDay from "./HabitDay";
-import { useContext } from "react";
-import UserContext from "../../context/UserContext";
 import { Ul } from "../../assets/styles/Body";
+import { weekData } from "../common/weekData";
 
 export default function Habit({ id, name, days, confirmDelete }) {
-    const { week } = useContext(UserContext);
+    const week = weekData;
+    
     const daysMapped = week.map(day => {
         if (days.includes(day.id)) {
             return {
                 ...day,
-                selected: true
+                selected: true,
             }
         }
         return day;
