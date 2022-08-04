@@ -1,12 +1,17 @@
+import dayjs from "dayjs";
+import { weekday } from "../common/weekData";
 import styled from "styled-components";
 import TodayHabit from "./TodayHabit";
 
 export default function Today() {
+    const day = dayjs().date();
+    const month = dayjs().month() + 1;
+
     return (
         <Wrapper>
             <div>
                 <h2>
-                    Segunda, 17/05
+                    {weekday}, {day}/{month}
                 </h2>
                 <H4 started={true}>
                     (67% dos hábitos concluídos)(Nenhum hábito concluído ainda)
@@ -21,7 +26,7 @@ export default function Today() {
     );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
     width: 90vw;
     margin: 72px auto;
 

@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 const weekData = [
     {
         id: 0,
@@ -37,4 +39,13 @@ const weekData = [
     }
 ];
 
-export { weekData };
+const weekdayNumber = dayjs().day();
+let weekday;
+
+weekData.forEach(day => {
+    if (day.id === weekdayNumber) {
+        weekday = day.dayName;
+    }
+});
+
+export { weekData, weekday };
