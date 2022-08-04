@@ -1,23 +1,45 @@
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { BsCheckSquareFill } from "react-icons/bs";
+import { postHabitsCheck, postHabitsUncheck } from "../../services/trackit";
 
-export default function TodayHabit() {
+export default function TodayHabit({ id, name, done, currentSequence, highestSequence, renderHabits, setRenderHabits }) {
+    function checkHabit() {
+        if (!done) {
+            console.log('Oi', id);
+            postHabitsCheck(id)
+                .catch((error) => {
+                    console.log(error);
+                })
+                .then((answer) => {
+                    setRenderHabits(!renderHabits);
+                });
+        } else {
+            postHabitsUncheck(id)
+                .catch((error) => {
+                    console.log(error);
+                })
+                .then((answer) => {
+                    setRenderHabits(!renderHabits);
+                });
+        }
+    }
+
     return (
         <LiWrapper>
             <section>
                 <h3>
-                    Ler 1 capítulo de livro
+                    {name}
                 </h3>
                 <p>
-                    Sequência atual: <Span selected={true}>4 dias</Span>
+                    Sequência atual: <Span done={done}>{currentSequence} dias</Span>
                 </p>
                 <p>
-                    Seu recorde: <Span>5 dias</Span>
+                    Seu recorde: <Span>{highestSequence} dias</Span>
                 </p>
             </section>
-            <IconContext.Provider value={{ color: "#EBEBEB", size: "69px" }}>
-                <BsCheckSquareFill />
+            <IconContext.Provider value={{ color: (done ? "#8FC549" : "#EBEBEB"), size: "69px" }}>
+                <BsCheckSquareFill onClick={checkHabit} />
             </IconContext.Provider>
         </LiWrapper>
     );
@@ -50,5 +72,5 @@ const LiWrapper = styled.li`
 `;
 
 const Span = styled.span`
-    color: ${props => props.selected ? '#8FC549' : '#666666'};
+    color: ${props => props.done ? '#8FC549' : '#666666'};
 `;

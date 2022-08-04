@@ -12,6 +12,7 @@ import { weekData } from "./common/weekData";
 
 export default function App() {
     const [week, setWeek] = useState(weekData);
+    const [percentage, setPercentage] = useState(0);
     const [habitName, setHabitName] = useState({
         name: ''
     })
@@ -19,7 +20,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <GlobalStyle />
-            <UserContext.Provider value={{ week, setWeek, habitName, setHabitName }}>
+            <UserContext.Provider value={{ week, setWeek, habitName, setHabitName, percentage, setPercentage }}>
                 <Routes>
                     <Route path="/" element={<Login />} />
                     <Route path="/cadastro" element={<SignUp />} />

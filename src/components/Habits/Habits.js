@@ -5,7 +5,7 @@ import HabitForm from "./HabitForm";
 import Button from "../../assets/styles/Button";
 import Habit from "./Habit";
 import { deleteHabit, getHabits } from "../../services/trackit";
-import { ThreeDots } from "react-loader-spinner";
+import Loading from "../common/Loading";
 
 export default function Habits() {
     const [newHabit, setNewHabit] = useState(false);
@@ -55,13 +55,7 @@ export default function Habits() {
                         </ul>
                     )
                 ) : (
-                    <LoadingWrapper>
-                        <ThreeDots
-                            radius="9"
-                            color="#52B6FF"
-                            ariaLabel="three-dots-loading"
-                        />
-                    </LoadingWrapper>
+                    <Loading />
                 )}
         </Main>
 
@@ -73,9 +67,4 @@ const TitleWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-`;
-
-const LoadingWrapper = styled.div`
-    display: flex;
-    justify-content: center;
 `;

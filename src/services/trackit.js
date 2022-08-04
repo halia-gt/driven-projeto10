@@ -6,7 +6,7 @@ function createHeaders() {
     const auth = JSON.parse(localStorage.getItem("trackit"));
     const config = {
         headers: {
-        Authorization: `Bearer ${auth.token}`
+            Authorization: `Bearer ${auth.token}`
         }
     };
 
