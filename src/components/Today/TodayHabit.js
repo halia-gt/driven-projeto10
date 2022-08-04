@@ -3,6 +3,7 @@ import { IconContext } from "react-icons";
 import { BsCheckSquareFill } from "react-icons/bs";
 
 export default function TodayHabit({ habit, checkHabit }) {
+    const equalSequence = (habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0);
 
     return (
         <LiWrapper>
@@ -14,7 +15,7 @@ export default function TodayHabit({ habit, checkHabit }) {
                     Sequência atual: <Span done={habit.done}>{habit.currentSequence} dias</Span>
                 </p>
                 <p>
-                    Seu recorde: <Span>{habit.highestSequence} dias</Span>
+                    Seu recorde: <Span done={equalSequence}>{habit.highestSequence} dias</Span>
                 </p>
             </section>
             <IconContext.Provider value={{ color: (habit.done ? "#8FC549" : "#EBEBEB"), size: "69px" }}>
