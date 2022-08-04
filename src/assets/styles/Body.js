@@ -17,3 +17,7 @@ export const Span = styled.span`
     color: #666666;
 `;
 
+export const Ul = styled.ul`
+    display: flex;
+    margin-top: 8px;
+`;

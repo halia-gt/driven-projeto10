@@ -2,15 +2,34 @@ import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { ImBin } from "react-icons/im";
 import HabitDay from "./HabitDay";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
+import { Ul } from "../../assets/styles/Body";
 
-export default function Habit() {
+export default function Habit({ name, days }) {
+    const { week } = useContext(UserContext);
+    const daysMapped = week.map(day => {
+        if (days.includes(day.id)) {
+            return {
+                ...day,
+                selected: true
+            }
+        }
+        return day;
+    });
+
     return (
         <Wrapper>
-            <h3>Ler 1 capítulo de livro</h3>
+            <h3>{name}</h3>
             <IconContext.Provider value={{ color: "#666666", className: "icon" }}>
                 <ImBin />
             </IconContext.Provider>
-            {/* <HabitDay /> */}
+            <Ul>
+                {daysMapped.map(day => (
+                    <HabitDay key={day.id} disabled={true} day={day} />
+                ))}
+            </Ul>
+
         </Wrapper>
     );
 }

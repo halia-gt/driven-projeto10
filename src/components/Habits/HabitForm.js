@@ -4,6 +4,7 @@ import HabitDay from "./HabitDay";
 import Button from "../../assets/styles/Button";
 import P from "../../assets/styles/P";
 import Input from "../../assets/styles/Input";
+import { Ul } from "../../assets/styles/Body";
 import { postHabit } from "../../services/trackit";
 import UserContext from "../../context/UserContext";
 
@@ -76,9 +77,9 @@ export default function HabitForm({setNewHabit}) {
                 updateData={updateData}
                 disabled={disabled}
             />
-            <section>
+            <Ul>
                 {week.map(day => (<HabitDay key={day.id} day={day} selectWeekday={selectWeekday} disabled={disabled} />))}
-            </section>
+            </Ul>
             <P setNewHabit={setNewHabit}>Cancelar</P>
             <Button height="35px" width="84px" fontSize="16px" type="submit" disabled={disabled}>
                 Salvar
@@ -96,11 +97,6 @@ const FormWrapper = styled.form`
 
     input {
         width: 100%;
-    }
-
-    section {
-        display: flex;
-        margin-top: 8px;
     }
 
     button {
