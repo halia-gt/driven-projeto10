@@ -8,7 +8,7 @@ import { Ul } from "../../assets/styles/Body";
 import { postHabit } from "../../services/trackit";
 import UserContext from "../../context/UserContext";
 
-export default function HabitForm({setNewHabit}) {
+export default function HabitForm({ setNewHabit, renderHabits, setRenderHabits }) {
     const { habitName, setHabitName } = useContext(UserContext);
     const [disabled, setDisabled] = useState(false);
     const {week, setWeek} = useContext(UserContext);
@@ -64,6 +64,7 @@ export default function HabitForm({setNewHabit}) {
                 setWeek(newWeek);
                 setDisabled(false);
                 setNewHabit(false);
+                setRenderHabits(!renderHabits);
             })
     }
 

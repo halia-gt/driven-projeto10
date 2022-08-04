@@ -4,12 +4,13 @@ import { Main, Title, Span } from "../../assets/styles/Body";
 import HabitForm from "./HabitForm";
 import Button from "../../assets/styles/Button";
 import Habit from "./Habit";
-import { getHabits } from "../../services/trackit";
+import { deleteHabit, getHabits } from "../../services/trackit";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function Habits() {
     const [newHabit, setNewHabit] = useState(false);
     const [habits, setHabits] = useState(null);
+    const [renderHabits, setRenderHabits] = useState(false);
 
     useEffect(() => {
         getHabits()
@@ -18,8 +19,18 @@ export default function Habits() {
             })
             .then((answer) => {
                 setHabits(answer.data);
-            })
-    }, [])
+            });
+    }, [renderHabits]);
+
+    function confirmDelete(habitId) {
+        const isConfirmed = window.confirm('Tem certeza de que gostaria de excluir esse hábito?');
+        if (isConfirmed) {
+            deleteHabit(habitId)
+                .then(() => {
+                    setRenderHabits(!renderHabits);
+                });
+        }
+    }
 
     return (
         <Main>
@@ -31,7 +42,7 @@ export default function Habits() {
                     +
                 </Button>
             </TitleWrapper>
-            {newHabit ? <HabitForm setNewHabit={setNewHabit} /> : <></>}
+            {newHabit ? <HabitForm setNewHabit={setNewHabit} renderHabits={renderHabits} setRenderHabits={setRenderHabits} /> : <></>}
 
             {habits ? (
                     habits.length === 0 ? (
@@ -39,7 +50,7 @@ export default function Habits() {
                     ) : (
                         <ul>
                             {habits.map(habit => (
-                                <Habit key={habit.id} {...habit} />
+                                <Habit key={habit.id} {...habit} confirmDelete={confirmDelete} />
                             ))}
                         </ul>
                     )

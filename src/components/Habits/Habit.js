@@ -6,7 +6,7 @@ import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { Ul } from "../../assets/styles/Body";
 
-export default function Habit({ name, days }) {
+export default function Habit({ id, name, days, confirmDelete }) {
     const { week } = useContext(UserContext);
     const daysMapped = week.map(day => {
         if (days.includes(day.id)) {
@@ -22,7 +22,7 @@ export default function Habit({ name, days }) {
         <Wrapper>
             <h3>{name}</h3>
             <IconContext.Provider value={{ color: "#666666", className: "icon" }}>
-                <ImBin />
+                <ImBin onClick={() => confirmDelete(id)} />
             </IconContext.Provider>
             <Ul>
                 {daysMapped.map(day => (
