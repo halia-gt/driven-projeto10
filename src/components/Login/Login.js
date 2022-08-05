@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { LoginWrapper } from "../../assets/styles/LoginWrapper";
 import {ReactComponent as Logo} from "../../assets/img/logo.svg";
 import Input from "../../assets/styles/Input";
@@ -14,6 +14,7 @@ export default function Login() {
         password: ''
     });
     const navigate = useNavigate();
+    const auth = JSON.parse(localStorage.getItem("trackit"));
 
     function updateData(e) {
         setData({
@@ -42,31 +43,35 @@ export default function Login() {
             });
     }
 
-    return (
-        <LoginWrapper>
-            <Logo />
-            <form onSubmit={handleSubmit}>
-                <Input
-                    type="email"
-                    placeholder="email"
-                    name="email"
-                    value={data.email}
-                    updateData={updateData}
-                    disabled={disabled}
-                />
-                <Input
-                    type="password"
-                    placeholder="senha"
-                    name="password"
-                    value={data.password}
-                    updateData={updateData}
-                    disabled={disabled}
-                />
-                <Button type="submit" disabled={disabled}>Entrar</Button>
-            </form>
-            <Link to="/cadastro">
-                <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
-            </Link>
-        </LoginWrapper>
-    );
+    if (auth) {
+        return (<Navigate to="/hoje" />);
+    } else {
+        return (
+            <LoginWrapper>
+                <Logo />
+                <form onSubmit={handleSubmit}>
+                    <Input
+                        type="email"
+                        placeholder="email"
+                        name="email"
+                        value={data.email}
+                        updateData={updateData}
+                        disabled={disabled}
+                    />
+                    <Input
+                        type="password"
+                        placeholder="senha"
+                        name="password"
+                        value={data.password}
+                        updateData={updateData}
+                        disabled={disabled}
+                    />
+                    <Button type="submit" disabled={disabled}>Entrar</Button>
+                </form>
+                <Link to="/cadastro">
+                    <P textDecoration="underline" fontSize="14px">Não tem uma conta? Cadastre-se!</P>
+                </Link>
+            </LoginWrapper>
+        );
+    }
 }
