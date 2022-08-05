@@ -10,9 +10,10 @@ import { postHabitsCheck, postHabitsUncheck } from "../../services/trackit";
 
 export default function Today() {
     const [habits, setHabits] = useState(null);
-    const [renderHabits, setRenderHabits] = useState(false);
     const { setPercentage } = useContext(UserContext);
-    let text, doneHabits, started;
+    const [ text, setText ] = useState('');
+    const [ started, setStarted ] = useState(false);
+    const [ render, setRender ] = useState(false);
 
     useEffect(() => {
         getHabitsToday()
@@ -21,22 +22,18 @@ export default function Today() {
             })
             .then((answer) => {
                 setHabits(answer.data);
+                const doneHabits = answer.data.filter(habit => habit.done);
+                const percentageDone = Math.round((doneHabits.length / answer.data.length)*100);
+                if (doneHabits.length === 0) {
+                    setStarted(false);
+                    setText('Nenhum hábito concluído ainda');
+                } else {
+                    setStarted(true);
+                    setText(`${percentageDone}% dos hábitos concluídos`);
+                }
+                setPercentage(percentageDone);
             });
-    }, [renderHabits]);
-
-    if (habits) {
-        doneHabits = habits.filter(habit => habit.done);
-        const percentage = Math.round((doneHabits.length / habits.length)*100);
-        setPercentage(percentage);
-
-        if (doneHabits.length === 0) {
-            started = false;
-            text = 'Nenhum hábito concluído ainda';
-        } else {
-            started = true;
-            text = `${percentage}% dos hábitos concluídos`;
-        }
-    }
+    }, [setPercentage, render]);
 
     function checkHabit(habitId) {
         const habit = habits.filter(habit => habitId === habit.id)[0];
@@ -46,7 +43,7 @@ export default function Today() {
                     console.log(error);
                 })
                 .then(() => {
-                    setRenderHabits(!renderHabits);
+                    setRender(!render);
                 });
         } else {
             postHabitsUncheck(habitId)
@@ -54,7 +51,7 @@ export default function Today() {
                     console.log(error);
                 })
                 .then(() => {
-                    setRenderHabits(!renderHabits);
+                    setRender(!render);
                 });
         }
     }

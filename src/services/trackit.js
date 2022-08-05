@@ -49,13 +49,15 @@ function getHabitsToday() {
 
 function postHabitsCheck(habitId) {
     const config = createHeaders();
-    const promise = axios.post(`${BASE_URL}/habits/${habitId}/check`, config);
+    const body = {};
+    const promise = axios.post(`${BASE_URL}/habits/${habitId}/check`, body, config);
     return promise;
 }
 
 function postHabitsUncheck(habitId) {
     const config = createHeaders();
-    const promise = axios.post(`${BASE_URL}/habits/${habitId}/uncheck`, config);
+    const body = {};
+    const promise = axios.post(`${BASE_URL}/habits/${habitId}/uncheck`, body, config);
     return promise;
 }
 

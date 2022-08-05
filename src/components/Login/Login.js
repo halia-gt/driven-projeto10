@@ -32,6 +32,7 @@ export default function Login() {
                 setDisabled(false);
             })
             .then((answer) => {
+                localStorage.clear();
                 const token = answer.data.token;
                 const image = answer.data.image;
                 const authJSON = JSON.stringify({ token: token, image: image });
