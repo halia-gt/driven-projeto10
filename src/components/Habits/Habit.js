@@ -12,7 +12,7 @@ export default function Habit({ id, name, days, confirmDelete }) {
         if (days.includes(day.id)) {
             return {
                 ...day,
-                selected: true,
+                selected: true, 
             }
         }
         return day;

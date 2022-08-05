@@ -28,19 +28,18 @@ export default function Login() {
         setDisabled(true);
 
         postLogin(data)
-            .catch((error) => {
-                alert(error.message);
-                setDisabled(false);
-            })
             .then((answer) => {
-                localStorage.clear();
                 const token = answer.data.token;
                 const image = answer.data.image;
                 const authJSON = JSON.stringify({ token: token, image: image });
                 localStorage.setItem('trackit', authJSON);
 
                 navigate('/hoje');
-            });
+            })
+            .catch((error) => {
+                setDisabled(false);
+                alert(error.message);
+            }); 
     }
 
     if (auth) {

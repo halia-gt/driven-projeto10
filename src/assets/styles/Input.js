@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function Input({ type, placeholder, name, value, updateData, disabled}) {
+export default function Input({ type, placeholder, name, value, updateData, disabled}) { 
     return(
         <InputWrapper
             type={type}
@@ -20,6 +20,6 @@ const InputWrapper = styled.input`
     font-size: 20px;
     
     &:disabled {
-        background-color: #F2F2F2;
+        background-color: red;
     }
 `;

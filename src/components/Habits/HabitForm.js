@@ -71,7 +71,7 @@ export default function HabitForm({ setNewHabit, renderHabits, setRenderHabits }
                 setDisabled(false);
                 setNewHabit(false);
                 setRenderHabits(!renderHabits);
-            })
+            });
     }
 
     return (
