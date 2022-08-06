@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 import { BsCheckSquareFill } from "react-icons/bs";
+import { Li } from "../../assets/styles/Body";
+
 
 export default function TodayHabit({ habit, checkHabit }) {
     const equalSequence = (habit.currentSequence === habit.highestSequence && habit.highestSequence !== 0);
@@ -25,22 +27,12 @@ export default function TodayHabit({ habit, checkHabit }) {
     );
 }
 
-const LiWrapper = styled.li`
-    background-color: #FFFFFF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-
+const LiWrapper = styled(Li)`
     section {
         padding: 0;
     }
 
     h3 {
-        color: #666666;
-        font-size: 20px;
         margin-bottom: 8px;
     }
 

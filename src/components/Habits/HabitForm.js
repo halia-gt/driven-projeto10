@@ -101,6 +101,7 @@ const FormWrapper = styled.form`
     background-color: #FFFFFF;
     margin-bottom: 30px;
     position: relative;
+    border-radius: 5px;
 
     input {
         width: 100%;

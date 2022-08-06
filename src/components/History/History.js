@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
-import { Main, Title } from "../../assets/styles/Body";
+import { Li, Main, Title } from "../../assets/styles/Body";
 import { getHistory } from "../../services/trackit";
 import Loading from "../common/Loading";
+import { IconContext } from "react-icons";
+import { BsCheckSquareFill, BsXSquareFill } from "react-icons/bs";
 
 export default function History() {
     var customParseFormat = require('dayjs/plugin/customParseFormat');
@@ -50,14 +52,31 @@ export default function History() {
             </Title>
             <CalendarWrapper>
                 {history ? (
-                        <Calendar
-                            value={date}
-                            onChange={setDate}
-                            calendarType="US"
-                            locale="pt-br"
-                            formatDay={(locale, date) => dayjs(date).format('DD')}
-                            tileClassName={tileClassName}
-                        />
+                        <>
+                            <Calendar
+                                value={date}
+                                onChange={setDate}
+                                calendarType="US"
+                                locale="pt-br"
+                                formatDay={(locale, date) => dayjs(date).format('DD')}
+                                tileClassName={tileClassName}
+                            />
+                            <ul>
+                                <LiWrapper>
+                                    <h3>Cozinhar</h3>
+                                    <IconContext.Provider value={{ color: "#8FC549", size: "40px" }}>
+                                        <BsCheckSquareFill />
+                                    </IconContext.Provider>
+                                </LiWrapper>
+                                <LiWrapper>
+                                    <h3>Yoga</h3>
+                                    <IconContext.Provider value={{ color: "#EA5766", size: "40px" }}>
+                                        <BsXSquareFill />
+                                    </IconContext.Provider>
+                                </LiWrapper>
+                            </ul>
+                        </>
+
                     ) : (
                         <Loading />
                     )
@@ -70,6 +89,8 @@ export default function History() {
 
 const CalendarWrapper = styled.div`
     .react-calendar {
+        width: 100%;
+        max-width: 500px;
         border-radius: 10px;
         border: none;
     }
@@ -90,4 +111,8 @@ const CalendarWrapper = styled.div`
     .complete {
         background-color: #8cc654;
     }
+`;
+
+const LiWrapper = styled(Li)`
+    margin-top: 10px;
 `;

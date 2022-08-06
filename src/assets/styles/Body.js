@@ -34,3 +34,18 @@ export const H4 = styled.h4`
     justify-content: center;
     align-items: center;
 `;
+
+export const Li = styled.li`
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    h3 {
+        color: #666666;
+        font-size: 20px;
+    }
+`;
