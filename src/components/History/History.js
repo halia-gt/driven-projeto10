@@ -80,7 +80,7 @@ export default function History() {
                                     </Title>
                                     <ul>
                                         {history[index].habits.map(habit => (
-                                            <HistoryDay name={habit.name} done={habit.done} />
+                                            <HistoryDay key={habit.id} name={habit.name} done={habit.done} />
                                         ))}
                                     </ul>
                                     <P setNewHabit={setShowHabits}>Cancelar</P>
