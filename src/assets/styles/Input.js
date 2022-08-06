@@ -20,6 +20,6 @@ const InputWrapper = styled.input`
     font-size: 20px;
     
     &:disabled {
-        background-color: red;
+        background-color: #F2F2F2;
     }
 `;
