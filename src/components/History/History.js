@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
-import { Li, Main, Title } from "../../assets/styles/Body";
+import { Main, Title } from "../../assets/styles/Body";
 import { getHistory } from "../../services/trackit";
 import Loading from "../common/Loading";
-import { IconContext } from "react-icons";
-import { BsCheckSquareFill, BsXSquareFill } from "react-icons/bs";
+import P from "../../assets/styles/P";
+import HistoryDay from "./HistoryDay";
 
 export default function History() {
     var customParseFormat = require('dayjs/plugin/customParseFormat');
@@ -15,6 +15,8 @@ export default function History() {
     const [date, setDate] = useState(new Date());
     const [history, setHistory] = useState(null);
     const [apiDays, setApiDays] = useState([]);
+    const [index, setIndex] = useState(0);
+    const [showHabits, setShowHabits] = useState(false);
 
     useEffect(() => {
         getHistory()
@@ -45,6 +47,15 @@ export default function History() {
         }
     }
 
+    function onClickDay(date) {
+        const calendarDay = dayjs(date).format('DD/MM/YYYY');
+        if (apiDays.includes(calendarDay)) {
+            const i = apiDays.indexOf(calendarDay);
+            setShowHabits(true);
+            setIndex(i);
+        }
+    }
+
     return (
         <Main>
             <Title>
@@ -60,21 +71,24 @@ export default function History() {
                                 locale="pt-br"
                                 formatDay={(locale, date) => dayjs(date).format('DD')}
                                 tileClassName={tileClassName}
+                                onClickDay={onClickDay}
                             />
-                            <ul>
-                                <LiWrapper>
-                                    <h3>Cozinhar</h3>
-                                    <IconContext.Provider value={{ color: "#8FC549", size: "40px" }}>
-                                        <BsCheckSquareFill />
-                                    </IconContext.Provider>
-                                </LiWrapper>
-                                <LiWrapper>
-                                    <h3>Yoga</h3>
-                                    <IconContext.Provider value={{ color: "#EA5766", size: "40px" }}>
-                                        <BsXSquareFill />
-                                    </IconContext.Provider>
-                                </LiWrapper>
-                            </ul>
+                            {showHabits ? (
+                                <>
+                                    <Title>
+                                        Hábitos do dia {history[index].day}
+                                    </Title>
+                                    <ul>
+                                        {history[index].habits.map(habit => (
+                                            <HistoryDay name={habit.name} done={habit.done} />
+                                        ))}
+                                    </ul>
+                                    <P setNewHabit={setShowHabits}>Cancelar</P>
+                                </>
+                            ) : (
+                                <></>
+                            )}
+
                         </>
 
                     ) : (
@@ -95,11 +109,6 @@ const CalendarWrapper = styled.div`
         border: none;
     }
 
-    .react-calendar__tile--active {
-        background-color: #ffffa9;
-        color: #000000;
-    }
-
     .complete, .incomplete {
         clip-path: circle();
     }
@@ -111,8 +120,4 @@ const CalendarWrapper = styled.div`
     .complete {
         background-color: #8cc654;
     }
-`;
-
-const LiWrapper = styled(Li)`
-    margin-top: 10px;
 `;
