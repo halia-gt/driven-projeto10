@@ -29,12 +29,12 @@ export default function SignUp() {
         setDisabled(true);
 
         postSignUp(data)
+            .then(() => {
+                navigate('/');
+            })
             .catch((error) => {
                 alert(error.message);
                 setDisabled(false);
-            })
-            .then(() => {
-                navigate('/');
             });
     }
 
